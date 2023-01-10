@@ -1,0 +1,25 @@
+--- @meta
+
+--- Comma-separated value of any the following flags.
+---
+--- `"defaults"`: Specify this if you would like to keep auto-selection of eased/not-eased while specifying some other flags.
+---
+--- `"eased"`: Maps noise gradient values onto a quintic S-curve before performing interpolation. This results in smooth, rolling noise. Disable this (noeased) for sharp-looking noise with a slightly gridded appearance. If no flags are specified (or defaults is), 2D noise is eased and 3D noise is not eased. Easing a 3D noise significantly increases the noise calculation load, so use with restraint.
+---
+--- `"absvalue"`: Absolute value of each octave's noise variation is used when combining the octaves, before applying `persistence`.
+--- @alias NoiseParamsFlags string
+
+--- Perlin noise creates a continuously-varying value depending on the input values.
+--- Usually in Minetest the input values are either 2D or 3D co-ordinates in nodes.
+---
+--- The final perlin noise variation is created as follows:
+--- `noise = offset + scale * sum(N=1, octave, abs(octave_N) * persistence^(N-1))`
+--- @class NoiseParams
+--- @field offset number # Added to the noise. Final step in creating noise value.
+--- @field scale number # Multiplied with the noise. Step after combining the octaves.
+--- @field spread Vector # (> 0.0) Analogous to 'wavelength' for the first octave. Change of input value needed for a very large variation of noise generated. Defines typical largest structure size in the noise varitation. Each X, Y, and Z component stretches or compresses noise variation in their respective axes.
+--- @field seed integer # (⪭ 0) Determines noise pattern. Usually, `seed` is different between `NoiseParams`, but sometimes identical noise patterns are useful.
+--- @field octaves integer # (⪭ 1) Number of combined simple noise generators. Finer noise detail per octave, but increases calculation load. 1 octave has a grid-like appearance, 3 octaves are typical for high quality, complex and natural-looking noise variation. First step in creating noise value.
+--- @field persistence number # Multiplied with amplitude of each additional octaves by `persistence^N` where `N` is the current octave. Define fine detail 'roughness', being smoother with smaller values. Often `persistence = 0.5` so amplitude halves per octave. Used in combining octaves.
+--- @field lacunarity number # (⪭ 1.0) Compresses 'wavelength' of each additional octaves by `1/lacunarity^(N-1)` where `N` is the current octave. Defines fine detail sizes, being higher quality with values below 2.0 at expense of requiring more octaves. Often `lacunarity = 2.0` so 'wavelength' halves per octave. Used in combining octaves.
+--- @field flags NoiseParamsFlags # Leave this field unset for no special handling.
