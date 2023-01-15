@@ -1,12 +1,12 @@
 --- @meta
 
 --- @param pos Vector
---- @param range integer # Actions also in range from `pos`
+--- @param radius integer
 --- @param since TimeUnix # Seconds since present
 --- @param max_actions integer # Maximum number of actions to search
 --- @return RollbackAction[]
---- Finds who has done something to a node, or near a node.
-function minetest.rollback_get_node_actions(pos, range, since, max_actions) end
+--- Finds who has done something to a node, or in a cube-region from a given position.
+function minetest.rollback_get_node_actions(pos, radius, since, max_actions) end
 
 --- @param actor string # `"player:NAME"` or `"liquid"`
 --- @param since TimeUnix # Seconds since present

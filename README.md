@@ -18,3 +18,8 @@ Defines auxiliary types for its main file, `library/minetest/SECTION.lua`.
 ## `library/types/SECTION.lua`
 Defines definition tables and various types about `SECTION` as organized in `lua_api.txt`.
 Auxiliary types may be merged here instead.
+
+# Games and mods overriding/extending Minetest Lua API
+TODO
+
+# License: MIT

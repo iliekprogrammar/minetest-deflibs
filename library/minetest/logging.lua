@@ -5,6 +5,6 @@
 function minetest.debug(...) end
 
 --- @param level LogLevel # (Default: `"none"`)
---- @param test string
+--- @param text string
 --- @overload fun(text: string)
 function minetest.log(level, text) end

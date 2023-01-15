@@ -8,8 +8,8 @@
 
 --- @class ItemTable
 --- @field name string
---- @field count integer
---- @field wear integer
+--- @field count integer # *[0,65535]*
+--- @field wear integer # *[0,65535]*
 --- @field metadata string
 
 
@@ -17,100 +17,169 @@
 --- @return ItemStack
 function ItemStack(inst) end
 
---- @class ItemStackClass
+--- Stack of items.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
+--- @class ItemStack
 ItemStack = {}
 
---- Stack of items.
---- @class ItemStack:ItemStackClass
-
 --- @return boolean
+--- Whether the item is empty, i.e. count is zero.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:is_empty() end
 
 --- @return string
+--- Gets item name.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_name() end
 
---- @param name string
---- @return boolean # Whether item was not cleared
-function ItemStack:set_name(name) end
+--- @param itemname string
+--- @return boolean # `true` item was not cleared
+---*****
+--- Sets item name.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
+function ItemStack:set_name(itemname) end
 
---- @return integer
+--- @return integer # *[0,65535]*
+---*****
+--- Gets item count.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_count() end
 
---- @param count integer
---- @return boolean # Whether item was not cleared
+--- @param count integer # *[0,65535]*
+--- @return boolean # `true` item was not cleared
+---*****
+--- Sets item count.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:set_count(count) end
 
---- @return integer
+--- @return integer # *[0,65535]*
+---*****
+--- Gets item wear.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_wear() end
 
---- @param wear integer
---- @return boolean # Whether item was not cleared
+--- @param wear integer # *[0,65535]*
+--- @return boolean # `true` item was not cleared
+---*****
+--- Sets item wear.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:set_wear(wear) end
 
 --- @return ItemStackMetaRef
+--- Gets item metadata.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_meta() end
 
 --- @return string
---- 1. `description` field in item metadata
---- 2. `description` field in item definition
---- 3. item name
+--- Gets description from the following, in order:
+---   1. `description` field in item metadata.
+---   2. `description` field in item definition.
+---   3. item name.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_description() end
 
---- @return string | nil # `nil` if none of these fields are set.
---------
---- 1. `short_description` field in item metadata
---- 2. `short_description` field in item definition
---- 3. First line in `description` field in item metadata
---- 4. First line in `description` field in item definition
+--- @return string | nil # `nil` failure.
+---*****
+--- Gets description from the following, in order:
+---   1. `short_description` field in item metadata.
+---   2. `short_description` field in item definition.
+---   3. First line in `description` field in item metadata.
+---   4. First line in `description` field in item definition.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_short_description() end
 
 --- @return true
 --- Removes all items from the stack, making it empty.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:clear() end
 
 --- @param item ItemFormat
 --- @return true
---- Replace the contents of this stack.
-function ItemStack:replace() end
+--- Replace the contents of this item stack.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
+function ItemStack:replace(item) end
 
 --- @return ItemString
+--- Gets item as an `ItemString`.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:to_string() end
 
 --- @return ItemTable
+--- Gets item as an `ItemTable`.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:to_table() end
 
---- @return integer
+--- @return integer # *[0,65535]*
+---*****
+--- Gets maximum item count.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_stack_max() end
 
---- @return integer
---- `get_stack_max() - get_count()`
+--- @return integer # *[0,65535]*
+---*****
+--- Gets count space available before being full: `ItemStack:get_stack_max() - ItemStack:get_count()`.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_free_space() end
 
 --- @return boolean
 --- Whether item is defined i.e. not an unknown item.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:is_known() end
 
---- @return ItemDefinition
+--- @return ItemlikeDef # `:unknown` item definition as fallback.
+---*****
+--- Get item definition.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_definition() end
 
---- @return ToolCapabilities
+--- @return ToolCapability # `:` (hand) item tool capability as fallback.
+---*****
+--- Get item tool capability.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:get_tool_capabilities() end
 
---- @param wear integer # (wear = [0, 65536])
---- @return boolean # Whether item is a tool and wear is increased
---------
+--- @param wear integer # *[0,65535]*
+--- @return boolean # `true` success.
+---*****
 --- Adding wear may destroy the item.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:add_wear(wear) end
 
---- @param max_uses integer # (uses = [0, 65536])
+--- @param max_uses integer # *[0,65535]*
 --- @return boolean # Whether item is a tool and wear is increased
---------
---- Increases wear by one use out of `max_uses`. Adding wear may destroy the item.
---- See also: `calculateResultWear()` in `tool.cpp`
+---*****
+--- Increases wear by one use from `max_uses`. Adding wear may destroy the item.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:add_wear_by_uses(max_uses) end
 
 --- @param item ItemFormat
 --- @return ItemStack # Leftover items
+---*****
+--- Add given item stack.
+---*****
+--- @*implementation* `src/script/lua_api/l_item.cpp`
 function ItemStack:add_item(item) end
 
 --- @param item ItemFormat

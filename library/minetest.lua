@@ -1,66 +1,6 @@
-function minetest.punch_node() end
-
-function minetest.get_node_max_level() end
-
-function minetest.get_node_level() end
-
-function minetest.set_node_level() end
-
-function minetest.add_node_level() end
-
-function minetest.add_entity() end
-
-function minetest.find_nodes_with_meta() end
-
-function minetest.get_node_timer() end
-
 function minetest.get_connected_players() end
 
-function minetest.get_player_by_name() end
-
-function minetest.get_objects_in_area() end
-
-function minetest.get_objects_inside_radius() end
-
-function minetest.set_timeofday() end
-
-function minetest.get_timeofday() end
-
-function minetest.get_gametime() end
-
-function minetest.get_day_count() end
-
-function minetest.find_node_near() end
-
-function minetest.find_nodes_in_area() end
-
-function minetest.find_nodes_in_area_under_air() end
-
-function minetest.fix_light() end
-
-function minetest.load_area() end
-
-function minetest.emerge_area() end
-
-function minetest.delete_area() end
-
-function minetest.get_perlin() end
-
 function minetest.get_perlin_map() end
-
-function minetest.get_voxel_manip() end
-
-function minetest.clear_objects() end
-
-function minetest.spawn_tree() end
-
-function minetest.find_path() end
-
-function minetest.line_of_sight() end
-
-function minetest.raycast() end
-
-function minetest.transforming_liquid_add() end
 
 function minetest.forceload_block() end
 
@@ -80,44 +20,6 @@ function minetest.get_content_id() end
 
 function minetest.get_name_from_content_id() end
 
-function minetest.get_biome_id() end
-
-function minetest.get_biome_name() end
-
-function minetest.get_heat() end
-
-function minetest.get_humidity() end
-
-function minetest.get_biome_data() end
-
-function minetest.get_mapgen_object() end
-
-function minetest.get_spawn_level() end
-
-function minetest.get_mapgen_params() end
-
-function minetest.set_mapgen_params() end
-
-function minetest.get_mapgen_edges() end
-
-function minetest.get_mapgen_setting() end
-
-function minetest.set_mapgen_setting() end
-
-function minetest.get_mapgen_setting_noiseparams() end
-
-function minetest.set_mapgen_setting_noiseparams() end
-
-function minetest.set_noiseparams() end
-
-function minetest.get_noiseparams() end
-
-function minetest.set_gen_notify() end
-
-function minetest.get_gen_notify() end
-
-function minetest.get_decoration_id() end
-
 function minetest.register_biome() end
 
 function minetest.register_decoration() end
@@ -133,10 +35,6 @@ function minetest.clear_registered_decorations() end
 function minetest.clear_registered_ores() end
 
 function minetest.clear_registered_schematics() end
-
-function minetest.generate_ores() end
-
-function minetest.generate_decorations() end
 
 function minetest.create_schematic() end
 
@@ -214,19 +112,9 @@ function minetest.get_user_path() end
 
 function minetest.compress() end
 
-function minetest.add_item() end
-
-function minetest.itemstring_with_color() end
-
-function minetest.dir_to_facedir() end
-
-function minetest.rotate_node() end
-
 function minetest.is_creative_enabled() end
 
 function minetest.rgba() end
-
-function minetest.get_meta() end
 
 function minetest.pos_to_string() end
 
@@ -252,8 +140,6 @@ function minetest.translate() end
 
 function minetest.override_chatcommand() end
 
-function minetest.check_for_falling() end
-
 function minetest.register_alias() end
 
 function minetest.get_color_escape_sequence() end
@@ -270,19 +156,7 @@ function minetest.register_entity() end
 
 function minetest.register_item() end
 
-function minetest.check_single_for_falling() end
-
-function minetest.override_item() end
-
-function minetest.unregister_item() end
-
-function minetest.register_node() end
-
-function minetest.register_craftitem() end
-
 function minetest.run_callbacks() end
-
-function minetest.register_tool() end
 
 function minetest.run_priv_callbacks() end
 
@@ -300,19 +174,13 @@ function minetest.get_translator() end
 
 function minetest.pointed_thing_to_face_pos() end
 
-function minetest.spawn_falling_node() end
-
 function minetest.register_on_player_hpchange() end
 
 function minetest.unregister_biome() end
 
-function minetest.get_pointed_thing_position() end
-
 function minetest.string_to_privs() end
 
 function minetest.register_on_chatcommand() end
-
-function minetest.get_node_drops() end
 
 function minetest.is_nan() end
 
@@ -321,12 +189,6 @@ function minetest.parse_relative_number() end
 function minetest.register_on_mods_loaded() end
 
 function minetest.register_on_shutdown() end
-
-function minetest.register_on_punchnode() end
-
-function minetest.register_on_placenode() end
-
-function minetest.register_on_dignode() end
 
 function minetest.register_on_generated() end
 
@@ -339,8 +201,6 @@ function minetest.register_on_prejoinplayer() end
 function minetest.register_can_bypass_userlimit() end
 
 function minetest.register_on_player_inventory_action() end
-
-function minetest.register_allow_player_inventory_action() end
 
 function minetest.register_on_rightclickplayer() end
 
@@ -386,15 +246,7 @@ function minetest.send_join_message() end
 
 function minetest.kick_player() end
 
-function minetest.get_artificial_light() end
-
 function minetest.get_node_group() end
-
-function minetest.get_item_group() end
-
-function minetest.get_position_from_hash() end
-
-function minetest.hash_node_position() end
 
 function minetest.register_on_auth_fail() end
 
@@ -410,37 +262,15 @@ function minetest.setting_get() end
 
 function minetest.setting_set() end
 
-function minetest.inventorycube() end
-
-function minetest.register_on_liquid_transformed() end
-
 function minetest.spawn_item() end
 
 function minetest.register_on_authplayer() end
 
 function minetest.register_on_priv_revoke() end
 
-function minetest.facedir_to_dir() end
-
 function minetest.async_event_handler() end
 
-function minetest.dir_to_fourdir() end
-
-function minetest.fourdir_to_dir() end
-
 function minetest.handle_async() end
-
-function minetest.dir_to_wallmounted() end
-
-function minetest.wallmounted_to_dir() end
-
-function minetest.dir_to_yaw() end
-
-function minetest.yaw_to_dir() end
-
-function minetest.is_colored_paramtype() end
-
-function minetest.register_on_item_eat() end
 
 function minetest.register_on_protection_violation() end
 
@@ -458,10 +288,6 @@ function minetest.place_schematic_on_vmanip() end
 
 function minetest.decompress() end
 
-function minetest.itemstring_with_palette() end
-
-function minetest.handle_node_drops() end
-
 function minetest.get_dig_params() end
 
 function minetest.check_password_entry() end
@@ -471,8 +297,6 @@ function minetest.request_insecure_environment() end
 function minetest.register_on_joinplayer() end
 
 function minetest.register_on_leaveplayer() end
-
-function minetest.register_on_player_receive_fields() end
 
 function minetest.register_on_cheat() end
 
@@ -494,60 +318,25 @@ function minetest.error_handler() end
 
 function minetest.get_mod_storage() end
 
-function minetest.rotate_and_place() end
-
 function minetest.set_last_run_mod() end
 
 function minetest.get_last_run_mod() end
 
 function minetest.rollback_get_last_node_actor() end
 
-function minetest.get_all_craft_recipes() end
-
-function minetest.get_craft_recipe() end
-
-function minetest.get_craft_result() end
-
 function minetest.register_craft() end
 
 function minetest.clear_craft() end
 
-function minetest.set_node() end
-
-function minetest.bulk_set_node() end
-
-function minetest.add_node() end
-
-function minetest.swap_node() end
-
-function minetest.remove_node() end
-
-function minetest.get_node() end
-
-function minetest.get_node_or_nil() end
-
-function minetest.get_node_light() end
-
-function minetest.get_natural_light() end
-
-function minetest.place_node() end
-
-function minetest.dig_node() end
-
 function minetest.decode_base64() end
 
 function minetest.encode_base64() end
-
-function minetest.strip_param2_color() end
 
 minetest = {
 	object_refs = {
 		userdata: 0x7fa3401a99c8
 	},
 	luaentities = {},
-	registered_on_dignodes = {
-		<function>
-	},
 	callback_origins = {
 		[<function>] = {
 			mod = "*builtin*",
@@ -629,51 +418,6 @@ minetest = {
 			mod = "*builtin*",
 			name = "register_on_punchnode"
 		}
-	},
-	registered_nodes = {,
-		ignore = {
-			drawtype = "airlike",
-			drop = "",
-			mod_origin = "*builtin*",
-			paramtype = "none",
-			sunlight_propagates = false,
-			walkable = false,
-			pointable = false,
-			description = "\27(T@__builtin)Ignore\27E",
-			inventory_image = "ignore.png",
-			wield_image = "ignore.png",
-			air_equivalent = true,
-			buildable_to = true,
-			diggable = false,
-			node_placement_prediction = "",
-			on_place = <function>,
-			type = "node",
-			name = "ignore",
-			groups = {
-				not_in_creative_inventory = 1
-			}
-		},
-		air = {
-			drawtype = "airlike",
-			drop = "",
-			mod_origin = "*builtin*",
-			paramtype = "light",
-			sunlight_propagates = true,
-			walkable = false,
-			pointable = false,
-			floodable = true,
-			description = "\27(T@__builtin)Air\27E",
-			inventory_image = "air.png",
-			wield_image = "air.png",
-			air_equivalent = true,
-			buildable_to = true,
-			diggable = false,
-			type = "node",
-			groups = {
-				not_in_creative_inventory = 1
-			},
-			name = "air"
-		},
 	},
 	builtin_auth_handler = {
 		record_login = <function>,
@@ -813,8 +557,6 @@ minetest = {
 			get_staticdata = <function>
 		}
 	},
-	registered_craftitems = {},
-	registered_tools = {},
 	registered_craft_predicts = {},
 	registered_privileges = {
 		fly = {
@@ -996,11 +738,8 @@ minetest = {
 		<function>,
 		<function>
 	},
-	registered_on_modchannel_message = {},
 	registered_on_player_inventory_actions = {},
-	registered_allow_player_inventory_actions = {},
 	registered_on_rightclickplayers = {},
-	registered_on_liquid_transformed = {},
 	nodedef_default = {
 		groups = {},
 		inventory_image = "",
@@ -1693,15 +1432,7 @@ minetest = {
 	registered_on_punchplayers = {
 		<function>
 	},
-	registered_on_item_eats = {},
 	registered_on_protection_violation = {},
-	registered_on_placenodes = {
-		<function>
-	},
-	registered_on_punchnodes = {
-		<function>,
-		<function>
-	},
 	registered_on_mods_loaded = {
 		<function>,
 		<function>
@@ -1731,9 +1462,6 @@ minetest = {
 	},
 	registered_on_leaveplayers = {
 		<function>,
-		<function>
-	},
-	registered_on_player_receive_fields = {
 		<function>
 	},
 	registered_on_cheats = {},
