@@ -100,8 +100,6 @@ function minetest.get_tool_wear_after_use() end
 
 function minetest.get_hit_params() end
 
-function minetest.wrap_text() end
-
 function minetest.get_password_hash() end
 
 function minetest.is_yes() end
@@ -126,23 +124,11 @@ function minetest.register_authentication_handler() end
 
 function minetest.set_player_password() end
 
-function minetest.colorize() end
-
-function minetest.strip_foreground_colors() end
-
-function minetest.strip_background_colors() end
-
-function minetest.strip_colors() end
-
 function minetest.unregister_chatcommand() end
-
-function minetest.translate() end
 
 function minetest.override_chatcommand() end
 
 function minetest.register_alias() end
-
-function minetest.get_color_escape_sequence() end
 
 function minetest.register_alias_force() end
 
@@ -307,8 +293,6 @@ function minetest.string_to_area() end
 function minetest.privs_to_string() end
 
 function minetest.request_http_api() end
-
-function minetest.get_background_escape_sequence() end
 
 function minetest.deserialize() end
 

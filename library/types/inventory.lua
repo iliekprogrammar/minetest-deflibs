@@ -24,14 +24,15 @@ References:
 --- @alias InvLocation InvLocationPlayer | InvLocationNode | InvLocationDetached
 
 
---- Player Inventory lists:
---- * `"main"`: list containing the default inventory
---- * `"craft"`: list containing the craft input
---- * `"craftpreview"`: list containing the craft prediction
---- * `"craftresult"`: list containing the crafted output
---- * `"hand"`: list containing an override for the empty hand
----     * Is not created automatically, use `InvRef:set_size()`
----     * Is only used to enhance the empty hand's tool capabilities
+--[=[
+### Player Inventory lists
+  * `"main"`: list containing the default inventory.
+  * `"craft"`: list containing the craft input.
+  * `"craftpreview"`: list containing the craft prediction.
+  * `"craftresult"`: list containing the crafted output.
+  * `"hand"`: list containing an override for the empty hand. Only used to enhance the empty hand's tool capabilities.
+    * Not created automatically, use `InvRef:set_size()`. TODO what does this mean?
+]=]
 --- @alias InvList string
 
 

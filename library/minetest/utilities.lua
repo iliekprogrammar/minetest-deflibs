@@ -171,11 +171,11 @@ function minetest.get_version() end
 --- @return string
 function minetest.sha1(data, raw) end
 
---- @param colorspec ColorSpec|ColorStringCssNames
+--- @param colorspec ColorSpec
 --- @return ColorString|nil # `nil`: Invalid `ColorSpec`
 function minetest.colorspec_to_colorstring(colorspec) end
 
---- @param colorspec ColorSpec|ColorStringCssNames
+--- @param colorspec ColorSpec
 --- @return string # raw string of four bytes in an RGBA layout.
 function minetest.colorspec_to_bytes(colorspec) end
 

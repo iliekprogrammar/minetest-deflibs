@@ -208,6 +208,22 @@ function minetest.check_single_for_falling(pos) end
 --- Spread falling updates to neighbors.
 function minetest.check_for_falling(pos) end
 
+function minetest.dir_to_facedir() end
+
+function minetest.facedir_to_dir() end
+
+function minetest.dir_to_fourdir() end
+
+function minetest.fourdir_to_dir() end
+
+function minetest.dir_to_wallmounted() end
+
+function minetest.wallmounted_to_dir() end
+
+function minetest.is_colored_paramtype() end
+
+function minetest.strip_param2_color() end
+
 -- TODO maybe reference NodeDef.drop?
 
 --- @param node Node
@@ -217,26 +233,6 @@ function minetest.check_for_falling(pos) end
 function minetest.get_node_drops() end
 
 function minetest.handle_node_drops() end
-
--- TODO defaults.lua
---- @param pos Vector
---- @param node Node
---- @param puncher ObjectRef | nil
---- @param pointed_thing PointedThing
---- Calls functions registered by `minetest.register_on_punchnode()`.
-function minetest.node_punch(pos, node, puncher, pointed_thing) end
-
--- TODO defaults.lua
---- @param pos Vector
---- @param node Node
---- @param digger ObjectRef | nil
---- Checks if node can be dug, puts item into inventory, removes node.
---- Calls functions registered by `minetest.register_on_dignodes()`.
-function minetest.node_dig(pos, node, digger) end
-
-function minetest.hash_node_position() end
-
-function minetest.get_position_from_hash() end
 
 -- Register functions ----------------------------------------------------------
 
@@ -261,6 +257,9 @@ function minetest.register_on_liquid_transformed() end
 minetest.registered_on_liquid_transformed = {}
 
 -- TODO: split
+function minetest.hash_node_position() end
+
+function minetest.get_position_from_hash() end
 
 function minetest.add_entity() end
 

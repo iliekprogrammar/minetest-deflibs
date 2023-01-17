@@ -17,7 +17,7 @@ function minetest.get_inventory(location) end
 --- @param invname string # Detached inventory name. Follow `<modname>:<inventory>` convention.
 --- @param callbacks InvDetachedCallbacks
 --- @param player? string # Send information to player only. By default, all players will receive this information.
---- 📕 **NOTE**: This is a workaround and may be removed in the future.
+--- 📕 **Note**: This is a workaround and may be removed in the future.
 --- @return InvRef # Detached inventory. If already exists, it is cleared.
 ---*****
 --- Creates a detached inventory
@@ -60,8 +60,8 @@ minetest.registered_on_crafts = {}
 ---   * `"move"` → `InventoryActionInfoMove`
 ---   * `"put" or "take"` → `InventoryActionInfoPutTake`
 ---*****
---- Register callbacks triggered when determining how much of a stack may be
---- taken, put or moved to a player inventory.
+--- Register callbacks triggered when determining how much of an item stack may
+--- be taken, put or moved to a player inventory.
 function minetest.register_allow_player_inventory_action(callback) end
 
 --- @type (fun(player: PlayerRef, action: InventoryActionEnum, inventory: InvRef, info: InventoryActionInfo))[]

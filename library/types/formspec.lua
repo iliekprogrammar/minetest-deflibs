@@ -7,21 +7,6 @@ References:
 --]=]
 
 -- TODO this part is important for formspecs
---- Inventory locations:
---- * `"context"`: Selected node metadata.
---- * `"current_player"`: Player to whom the menu is shown.
---- * `"player:<name>"`: Any player.
---- * `"nodemeta:<X>,<Y>,<Z>"`: Any node metadata.
---- * `"detached:<name>"`: A detached inventory.
----
---- Player Inventory lists:
---- * `"main"`: list containing the default inventory
---- * `"craft"`: list containing the craft input
---- * `"craftpreview"`: list containing the craft prediction
---- * `"craftresult"`: list containing the crafted output
---- * `"hand"`: list containing an override for the empty hand
----     * Is not created automatically, use `InvRef:set_size()`
----     * Is only used to enhance the empty hand's tool capabilities
 
 --- @class FieldEventTable
 --- @field type '"INV"'|'"CHG"'|'"DCL"' # `"INV"` no row selected. `"CHG"` selected. `"DCL"` double-click.
@@ -94,5 +79,20 @@ are reserved to pass key press events to formspec.
 instance using `PlayerRef:set_formspec_prepend()`, which may be the reason
 backgrounds are appearing when you don't expect them to, or why things are
 styled differently to normal. See `no_prepend[]` element and *Styling Formspecs*.
---]=]
+
+### Inventory locations
+  * `"context"`: Selected node metadata.
+  * `"current_player"`: Player to whom the menu is shown.
+  * `"player:<name>"`: Any player.
+  * `"nodemeta:<X>,<Y>,<Z>"`: Any node metadata.
+  * `"detached:<name>"`: A detached inventory.
+
+### Player Inventory lists
+  * `"main"`: list containing the default inventory.
+  * `"craft"`: list containing the craft input.
+  * `"craftpreview"`: list containing the craft prediction.
+  * `"craftresult"`: list containing the crafted output.
+  * `"hand"`: list containing an override for the empty hand. Only used to enhance the empty hand's tool capabilities.
+    * Not created automatically, use `InvRef:set_size()`. TODO what does this mean?
+]=]
 --- @alias Formspec string
