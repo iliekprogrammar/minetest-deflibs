@@ -106,9 +106,9 @@ function minetest.register_tool(toolname, tooldef) end
 --- Registered items from `minetest.register_tool()`.
 minetest.registered_tools = {}
 
---- @param callback fun(item: ItemStack, picker: ObjectRef | nil, pointed_thing: PointedEntity, since_last_punch: TimeUnix,  ...): ItemStack | nil
---- @*callback-param* `picker` — Can be player or not.
---- @*callback-param* `pointed_thing` — `__builtin:item` entity.
+--- @param callback fun(item: ItemStack, picker: ObjectRef | nil, pointed_thing: PointedEntity, since_last_punch: TimeUnix,  ...: any): ItemStack | nil
+--- @*callback-param* `picker` — Can be player or not. \
+--- @*callback-param* `pointed_thing` — `__builtin:item` entity. \
 --- @*callback-param* `...` — Other parameters from `Entity:on_punch()` callback of `__builtin:item` entity. \
 --- @*callback-return* — `ItemStack` overrides default `minetest.item_pickup()` behaviour. Empty `ItemStack` removes `__builtin:item` entity.
 ---*****
@@ -121,18 +121,17 @@ function minetest.register_on_item_pickup(callback) end
 --- Registered callbacks from `minetest.register_on_item_pickup()`.
 minetest.registered_on_item_pickups = {}
 
---- @param callback fun(hp_change: integer, new_item: ItemFormat | nil, item: ItemStack, user: PlayerRef, pointed_thing PointedThing): ItemStack | nil
+--- @param callback fun(hp_change: integer, new_item: ItemFormat | nil, item: ItemStack, user: ObjectRef | nil, pointed_thing PointedThing): ItemStack | nil
 --- @*callback-param* hp_change — *[-65535,65535]*. \
---- @*callback-param* `user` — Can be player or not.
---- @*callback-param* `pointed_thing` — Can be node or not.
---- @*callback-return* — Leftover items. `nil` no inventory change. Unmodified `ItemStack` cancels default behaviour (i.e. HP increase).
+--- @*callback-param* `user` — Can be player or not. \
+--- @*callback-param* `pointed_thing` — Can be node or not. \
+--- @*callback-return* — `ItemStack` overrides default `minetest.do_item_eat()` behaviour.
 ---*****
---- Registers callback triggered by `minetest.item_eat()` before an item is
---- eaten. Oldest callbacks are triggered first. Callback chain stops for the
---- first callback to return an item.
+--- Registers callback triggered by `minetest.do_item_eat()` before an item is
+--- eaten. Callback chain stops for the first callback to return an item.
 function minetest.register_on_item_eat(callback) end
 
---- @type (fun(hp_change: integer, new_item: ItemFormat, item: ItemStack, user: PlayerRef, pointed_thing PointedThing): ItemFormat | nil)[]
+--- @type (fun(hp_change: integer, new_item: ItemFormat | nil, item: ItemStack, user: ObjectRef | nil, pointed_thing PointedThing): ItemStack | nil)[]
 ---*****
 --- Registered callbacks from `minetest.register_on_item_eat()`.
 minetest.registered_on_item_eats = {}

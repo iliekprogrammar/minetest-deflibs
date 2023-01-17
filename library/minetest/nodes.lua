@@ -83,31 +83,23 @@ function minetest.get_artificial_light(param1) end
 --------
 --- Place node with the same effects that a player would cause.
 --------
---- Triggers `ItemDef.on_place()` callback of the new node.
---- Triggers `NodeDef.on_destruct()`, then `NodeDef.after_destruct()` callbacks of the old node. Placement rule from `minetest.item_place_node()` applies.
---- Triggers `NodeDef.on_construct()` callback of the new node.
---- Triggers `NodeDef.after_place_node()` callback of the new node.
---- Triggers `minetest.register_on_placenode()` callbacks.
+--- 1. Triggers `ItemDef.on_place()` callback of the new node.
 function minetest.place_node(pos, node) end
 
 --- @param pos Vector
 --- @return boolean # Success
 --------
 --- Dig node with the same effects that a player would cause.
---------
---- Triggers `NodeDef.can_dig()` callback of the new node. Callback chain stops, if returns `false`. Otherwise:
---- Triggers `NodeDef.on_destruct()`, then `NodeDef.after_destruct()` callbacks of the old node.
---- Triggers `NodeDef.after_dig_node()` callback of the new node.
---- Triggers `minetest.register_on_dignode()` callbacks.
+---*****
+--- 1. Triggers `NodeDef.on_dig()` callback of the node.
 function minetest.dig_node(pos) end
 
 --- @param pos Vector
 --- @return boolean # Success
 --------
 --- Punch node with the same effects that a player would cause.
---------
---- Triggers `NodeDef.on_punch()` callback of the node.
---- Triggers `minetest.register_on_punchnode()` callbacks.
+---*****
+--- 1. Triggers `NodeDef.on_punch()` callback of the node.
 function minetest.punch_node(pos) end
 
 --- @param pos Vector
