@@ -4,6 +4,8 @@ References:
   * `doc/lua_api.txt` → 'minetest' namespace reference → Item handling
 --]=]
 
+-- TODO group rating needs to be slimmer
+
 --[=[
 *[0,255]*.
 
@@ -50,34 +52,32 @@ engine and other mods can can interact with the thing without actually knowing
 what the thing is.
 
 Groups are stored in a table, having the group names with keys and the group
-ratings as values. Group ratings are integer values within the range
-[-32767,32767].
-
-Groups always have a rating associated with them. If there is no useful meaning
-for a rating for an enabled group, it shall be `1`. When not defined, the rating
-of a group defaults to `0`. Thus, when you read groups, you must interpret `nil`
-and `0` as the same value.
+ratings as values. Groups always have a rating associated with them. If there is
+no useful meaning for a rating for an enabled group, it shall be `1`. When not
+defined, the rating of a group defaults to `0`. Thus, when you read groups, you
+must interpret `nil` and `0` as the same value.
 
 ### Groups of entities
 
 For entities, groups are, as of now, used only for calculating damage. The
 rating is the percentage of damage caused by items with this damage group.
 
-TODO expand this
+👀 **See also**:`Entity:set_armor_gropus()`, `Entity:get_armor_gropus()`.
+`minetest.get_hit_params()` for damage calculation.
 
 ### Groups of tool capabilities
 
 Groups in tool capabilities define which groups of nodes and entities they are
 effective towards.
 
-TODO expand this
+👀 **See also**:`ToolDef.tool_capabilitie.groupcapss`. `minetest.get_hit_params()` fo
+ damage and wear calculation. `minetest.get_dig_param()` for digging time an
+ wear calculation.
 
 ### Special item groups
 
-* `not_in_creative_inventory`: ✅ **Recomendation**: For inventory mods to
+* `not_in_creative_inventory`: ✅ **Recomendation** for inventory mods to
   indicate that the item should be hidden in item lists.
-
-TODO last here
 
 ### Special node groups
 
@@ -90,19 +90,25 @@ TODO last here
     checked. No effect for other nodes.
   * `3`: the node is always attached to the node below.
   * `4`: the node is always attached to the node above.
-* `bouncy`: value is bounce speed in percent.
+  TODO reference where this is relevant
+
+* `bouncy`: value is bounce speed in percent. \
   If positive, jump/sneak on floor impact will increase/decrease bounce height.
   Negative value is the same bounciness, but non-controllable.
+  TODO include bouncy calculation in `src/client/localplayer.cpp` somewhere
 
 * `connect_to_raillike`: makes nodes of raillike drawtype with same group value
-  connect to each other
+  connect to each other.
+  TODO reference where this is relevant
 
 * `dig_immediate`: Player can always pick up node without reducing tool wear
-    * `2`: the node always gets the digging time 0.5 seconds (rail, sign)
-    * `3`: the node always gets the digging time 0 seconds (torch)
+  * `2`: the node always gets the digging time 0.5 seconds.
+  * `3`: the node always gets the digging time 0 seconds.
+  TODO reference where this is relevant
 
 * `disable_jump`: Player (and possibly other things) cannot jump from node
   or if their feet are in the node. Note: not supported for `new_move = false`
+  TODO reference where this is relevant
 
 * `fall_damage_add_percent`: modifies the fall damage suffered when hitting
   the top of this node. There's also an armor group with the same name.
@@ -113,10 +119,13 @@ TODO last here
       * ((player_fall_damage_add_percent + 100) / 100) -- player armor group
       - (14)                                           -- constant tolerance
   Negative damage values are discarded as no damage.
+  TODO split off the damage calculation elsewhere
 
 * `falling_node`: if there is no walkable block under the node it will fall
+  TODO reference where this is relevant
 
 * `float`: the node will not fall through liquids (`liquidtype ~= "none"`)
+  TODO reference where this is relevant
 
 * `level`: Can be used to give an additional sense of progression in the game.
      * A larger level will cause e.g. a weapon of a lower level make much less
@@ -125,14 +134,17 @@ TODO last here
      * `0` is something that is directly accessible at the start of gameplay
      * There is no upper limit
      * See also: `leveldiff` in [Tool Capabilities]
+  TODO reference where this is relevant
 
 * `slippery`: Players and items will slide on the node.
   Slipperiness rises steadily with `slippery` value, starting at 1.
+  TODO reference where this is relevant
 
 ### Special tool groups
 
 * `disable_repair`: If set to 1 for a tool, it cannot be repaired using the
   `"toolrepair"` crafting recipe
+  TODO reference where this is relevant
 
 
 ### Special `ObjectRef` armor groups
@@ -141,15 +153,17 @@ TODO last here
   will also hide the integrated HUD status bars for players. It is
   automatically set to all players when damage is disabled on the server and
   cannot be reset (subject to change).
+  TODO reference where this is relevant
 
 * `fall_damage_add_percent`: Modifies the fall damage suffered by players
   when they hit the ground. It is analog to the node group with the same
   name. See the node group above for the exact calculation.
+  TODO reference where this is relevant
 
 * `punch_operable`: For entities; disables the regular damage mechanism for
   players punching it by hand or a non-tool item, so that it can do something
   else than take damage.
-
+  TODO reference where this is relevant
 ]=]
 --- *[-32767,32767]*.
 --- @alias GroupRating integer

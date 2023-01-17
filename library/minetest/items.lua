@@ -8,6 +8,8 @@ References:
   * `doc/lua_api.txt` → 'minetest' namespace reference → Misc.
 --]=]
 
+-- TODO last here
+
 --- @param itemname string
 --- @param override ItemlikeDef
 --- Overrides `ItemDef` fields of given registered item with the given `ItemDef`. \
