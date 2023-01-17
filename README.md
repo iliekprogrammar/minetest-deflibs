@@ -1,7 +1,12 @@
 Currently this library definition is updated according to Minetest API during
 snapshot `89e7f72c9`, within development of 5.7.0.
 
-This library definition
+This library definition is limited to only LSP that implements lua definition
+libraries, like
+[sumneko](https://github.com/sumneko/lua-language-server/wiki/Libraries#environment-emulation)'s
+environment emulation feature. Because of this, it's very likely this project is
+locked to this LSP specifically and not portable to other lua LSPs without some
+tinkering.
 
 # Documentation
 Documentation here will be different from the official `lua_api.txt` as it
@@ -9,7 +14,7 @@ sources not only from this file but also from the engine source code, both lua
 and C++. Not only that, this sources from the official [minetest
 docs](https://github.com/minetest/minetest_docs/) project.
 
-## Status: not ready to accept contributions
+## Status: not ready to accept contributions. not ready to be installed.
 Currently, the files most completed, but are not final:
 * `library/minetest/chat.lua`
 * `library/invref.lua`
@@ -30,11 +35,13 @@ Currently, the files most completed, but are not final:
 WIP. Could change
 
 * [ ] Combine `library/types` and `library/minetest/SECTION.t.lua` together. Put
-      auxiliary types in their own subsection in the same file.
+      auxiliary types in their own subsection in the same file. Decision to
+      split them was a bad call.
 
 ## `library/minetest.lua`
 Currently undocumented functions under `minetest` namespace. This list is
-generated from dumping the global table.
+generated from dumping the global table. some `core` functions are also packed
+in here.
 
 ## `library/CLASS.lua`
 Defines API for the `CLASS` objects.
