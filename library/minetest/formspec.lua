@@ -6,58 +6,84 @@ References:
   * `doc/lua_api.txt` → 'minetest' namespace reference → Formspec
 --]=]
 
---- @param player string
+--- @param playername string
 --- @param formname string # Follow `"modname:<whatever>"` convention.
 --- @param formspec Formspec
 --- @return boolean # `true` formspec is sent to player.
 ---*****
 --- Sends formspec with given formname to player, displaying it.
 ---*****
+--- @*documentation* `doc/lua_api.txt`
+--- → **'minetest' namespace reference**
+--- → **Formspec**
+---
 --- @*implementation* `src/script/lua_api/l_server.cpp`
-function minetest.show_formspec(player, formname, formspec) end
+function minetest.show_formspec(playername, formname, formspec) end
 
---- @param player string
+--- @param playername string
 --- @param formname string # Follow `"modname:<whatever>"` convention.
 --- ⚠️ **WARNING**: `""` closes any formspec regardless of formname.
 --- @return boolean # `true` formspec is sent to player.
 ---*****
---- Sends an empty formspec with fiven formname to player, closing it.
+--- Sends an empty formspec with given formname to player, closing it.
 --- `show_formspec(player, formname, "")` is equivalent.
 ---*****
+--- @*documentation* `doc/lua_api.txt`
+--- → **'minetest' namespace reference**
+--- → **Formspec**
+---
 --- @*implementation* `builtin/game/misc.lua`
-function minetest.close_formspec(player, formname) end
+function minetest.close_formspec(playername, formname) end
 
---- @param s string
+--- @param text string
 --- @return string
 --- Escapes `[]\,;$` characters not allowed in formspecs.
 ---*****
+--- @*documentation* `doc/lua_api.txt`
+--- → **'minetest' namespace reference**
+--- → **Formspec**
+---
 --- @*implementation* `builtin/common/misc_helpers.lua`
-function minetest.formspec_escape(s) end
+function minetest.formspec_escape(text) end
 
---- @param field string
+--- @param event FieldEventRaw
 --- @return FieldEventTable
---- 'Explodes'/Parse `table[]` element events from field string.
+--- 'Explodes'/Parse `table[]` element events from received field event.
 ---*****
+--- @*documentation* `doc/lua_api.txt`
+--- → **'minetest' namespace reference**
+--- → **Formspec**
+---
 --- @*implementation* `builtin/common/misc_helpers.lua`
-function minetest.explode_table_event(field) end
+function minetest.explode_table_event(event) end
 
---- @param field string
+--- @param event FieldEventRaw
 --- @return FieldEventTextlist
---- 'Explodes'/Parse `textlist[]` element events from field string.
+--- 'Explodes'/Parse `textlist[]` element events from received field event.
 ---*****
+--- @*documentation* `doc/lua_api.txt`
+--- → **'minetest' namespace reference**
+--- → **Formspec**
+---
 --- @*implementation* `builtin/common/misc_helpers.lua`
-function minetest.explode_textlist_event(field) end
+function minetest.explode_textlist_event(event) end
 
---- @param field string
+-- TODO set field parameter type as FieldEventRaw
+
+--- @param event FieldEventRaw
 --- @return FieldEventScrollbar
---- 'Explodes'/Parse `scrollbar[]` element events from field string.
+--- 'Explodes'/Parse `scrollbar[]` element events from received field event.
 ---*****
+--- @*documentation* `doc/lua_api.txt`
+--- → **'minetest' namespace reference**
+--- → **Formspec**
+---
 --- @*implementation* `builtin/common/misc_helpers.lua`
-function minetest.explode_scrollbar_event(field) end
+function minetest.explode_scrollbar_event(event) end
 
 -- Register functions ----------------------------------------------------------
 
---- @param callback fun(player: PlayerRef, formname: string, fields: FieldEvents): boolean
+--- @param callback fun(player: PlayerRef, formname: string, events: FieldEvents): boolean
 --- @*callback-param* `formname` — Follow `"modname:<whatever>"` convention. \
 --- @*calllback-return* — `true` skips remaining callbacks.
 ---*****
@@ -75,8 +101,12 @@ function minetest.explode_scrollbar_event(field) end
 ---   * An entry was double-clicked in a textlist or table,
 ---   * A scrollbar was moved, or
 ---   * The form was actively closed by the player.
+---*****
+--- @*documentation* `doc/lua_api.txt`
+--- → **'minetest' namespace reference**
+--- → **Global callback registration functions**
 function minetest.register_on_player_receive_fields(callback) end
 
 --- Registered callbacks from `minetest.register_on_player_receive_fields()`.
---- @type (fun(player: PlayerRef, formname: string, fields: FieldEvents): boolean)[]
+--- @type (fun(player: PlayerRef, formname: string, events: FieldEvents): boolean)[]
 minetest.registered_on_player_receive_fields = {}

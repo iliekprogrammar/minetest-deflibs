@@ -6,21 +6,58 @@ References:
   * `doc/lua_api.txt` → 'minetest' namespace reference → Global callback registration functions
 --]=]
 
--- TODO this part is important for formspecs
+-- TODO wrte a brief about FieldEvent*
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class FieldEventTable
 --- @field type '"INV"'|'"CHG"'|'"DCL"' # `"INV"` no row selected. `"CHG"` selected. `"DCL"` double-click.
 --- @field row integer
 --- @field column integer
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class FieldEventTextlist
 --- @field type '"INV"'|'"CHG"'|'"DCL"' # `"INV"` no row selected. `"CHG"` selected. `"DCL"` double-click.
 --- @field index integer
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class FieldEventScrollbar
 --- @field type '"INV"'|'"CHG"'|'"VAL"' # `"INV"` failure. `"CHG"` changed. `"VAL"` no change.
 --- @field value integer
 
+--[=[
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
+
+Value of `FieldEvents` fields. e.g. `FieldEvents.dropdown`:
+  * `animated_image`: Index of the current frame.
+  * `button`: `nil` not pressed. `FieldValue` user-facing button text.
+  * `image_button`: `nil` not pressed. `FieldValue` user-facing button text.
+  * `button_exit`: `nil` not pressed. `FieldValue` user-facing button text.
+  * `image_button_exit`: `nil` not pressed. `FieldValue` user-facing button text.
+  * `item_image_button`: `nil` not pressed. `FieldValue` user-facing button text.
+  * `pwdfield`: Text in the field.
+  * `field`: Text in the field.
+  * `textarea`: Text in the field.
+  * `dropdown`: Either the index or value, depending on `<index event>`.
+  * `tabheader`: Tab index, starting with `"1"` (only if tab changed).
+  * `checkbox`: `"true"` checked, `"false"` unchecked.
+  * `textlist`: See `minetest.explode_textlist_event()`
+  * `table`: See `minetest.explode_table_event()`
+  * `scrollbar`: See `minetest.explode_scrollbar_event()`
+  * `quit`: User actively closed the form by mouse click, keypress, through a
+    `button_exit[]` element or `image_button_exit[]` element.
+  * `key_enter`: User pressed the Enter key and the focus was either nowhere
+    (closes the formspec) or on a button. 👀 **See also**:
+    `field_close_on_enter[]` element.
+  * `key_enter_field`: Name of text field, if `FieldEvents.key_enter = "true"` and focus was on a text field.
+]=]
+--- @alias FieldEventRaw string
+
+
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- Table containing each formspecs element value string, indexed by their `name`. e.g. `FieldEvents.dropdown`.
 --- @class FieldEvents
 --- @field animated_image? string # Index of the current frame.
@@ -56,9 +93,6 @@ formspec elements.
 `X` and `Y` position the formspec element relative to the top left of the menu
 or container. `W` and `H` are its width and height values.
 
-Inventories with a `player:<name>` inventory location are only sent to the
-player named `<name>`.
-
 ✅ **Recommendation**: Use `minetest.formspec_escape()` when displaying text
 which can contain formspec code. e.g. text set by a player.
 
@@ -83,7 +117,7 @@ styled differently to normal. See `no_prepend[]` element and *Styling Formspecs*
 ### Inventory locations
   * `"context"`: Selected node metadata.
   * `"current_player"`: Player to whom the menu is shown.
-  * `"player:<name>"`: Any player.
+  * `"player:<name>"`: Any player. Inventories will only be sent to the player named `<name>`.
   * `"nodemeta:<X>,<Y>,<Z>"`: Any node metadata.
   * `"detached:<name>"`: A detached inventory.
 
@@ -94,5 +128,8 @@ styled differently to normal. See `no_prepend[]` element and *Styling Formspecs*
   * `"craftresult"`: list containing the crafted output.
   * `"hand"`: list containing an override for the empty hand. Only used to enhance the empty hand's tool capabilities.
     * Not created automatically, use `InvRef:set_size()`. TODO what does this mean?
+
+--- @*documentation* `doc/lua_api.txt`
+--- → **Formspec**
 ]=]
 --- @alias Formspec string

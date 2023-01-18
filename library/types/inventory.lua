@@ -5,19 +5,30 @@ References:
   * `doc/lua_api.txt` → 'minetest' namespace reference → Global callback registration functions
 --]=]
 
+-- TODO determine whether these are auxiliary or not.
+-- TODO wrte a brief about InvLocation*
+
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class InvLocationPlayer
 --- @field type string # `type = "player"`
 --- @field name string
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class InvLocationNode
 --- @field type string # `type = "node"`
 --- @field pos Vector
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class InvLocationDetached
 --- @field type string # `type = "detached"`
 --- @field name string
 
---- One of 3 tables:
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
+--- Inventory location of a player, node or detached. Represented by one of 3 tables:
 ---   * `InvLocationPlayer`: `{type = "player", name: string}`
 ---   * `InvLocationNode`: `{type = "node", pos: Vector}`
 ---   * `InvLocationDetached`: `{type = "detached", name: string}`
@@ -25,6 +36,8 @@ References:
 
 
 --[=[
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
+
 ### Player Inventory lists
   * `"main"`: list containing the default inventory.
   * `"craft"`: list containing the craft input.
@@ -35,30 +48,40 @@ References:
 ]=]
 --- @alias InvList string
 
+-- TODO brief for InvAction*
 
---- @alias InventoryActionEnum
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
+--- @alias InvAction
 ---| '"move"'
 ---| '"put"'
 ---| '"take"'
 
---- @class InventoryActionInfoMove
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
+--- @class InvActionInfoMove
 --- @field from_list string
 --- @field to_list string
 --- @field from_index integer
 --- @field to_integer integer
 --- @field count integer
 
---- @class InventoryActionInfoPutTake
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
+--- @class InvActionInfoPutTake
 --- @field listname string
 --- @field index integer
 --- @field stack ItemStack
 
---- @alias InventoryActionInfo InventoryActionInfoMove | InventoryActionInfoPutTake
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
+--- @alias InvActionInfo InvActionInfoMove | InvActionInfoPutTake
 
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class InvDetachedCallbacks
 local InvDetachedCallbacks = {}
-
 
 --- @param inv InvRef
 --- @param from_list string
