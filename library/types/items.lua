@@ -4,25 +4,18 @@ References:
   * `doc/lua_api.txt` → 'minetest' namespace reference → Item handling
 --]=]
 
--- TODO group rating needs to be slimmer
-
 --[=[
-*[0,255]*.
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
 
-Hardware coloring simplifies the creation of colorful textures by performing
+*[0,255]*. Pallete simplifies the creation of colorful textures by performing
 multiplication (e.g. white-black texture applied red coloring will result in
-red-black color). You can use hardware coloring if your textures same pattern
-and only differ in color (e.g. colored wool blocks or dyes). This may be
-preferable than creating and managing many texture files.
+red-black color). Palettes can be used if your textures have the same pattern
+and only differ in color (e.g. colored wool nodes or dye items).
 
-For nodes and items which can have a set of many colors, a palette is more
-suitable. A palette is a texture, which can contain up to 256 pixels. Each pixel
-is one possible color, hence a paletter can contain up to 256 colors.
-
-When using palettes, you always provide a pixel index for the given node or
-`ItemStack`. The palette is read from left to right and from top to bottom. If
-the palette has less than 256 pixels, then it is stretched to contain exactly
-256 pixels (after arranging the pixels to one line). The indexing starts from 0.
+A palette is a texture, which can contain up to 256 pixels, each representing a
+possible color. The palette index is read from left to right and from top to
+bottom. If the palette has less than 256 pixels, then it is stretched to contain
+exactly 256 pixels (after arranging the pixels to one line).
 
 Examples:
 
@@ -30,52 +23,52 @@ Examples:
 * 16x16 palette, index = 4: the fifth pixel in the first row.
 * 16x16 palette, index = 16: the pixel below the top left corner.
 * 16x16 palette, index = 255: the bottom right corner.
-* 2 (width) x 4 (height) palette, index = 31: the top left corner. The palette
-  has 8 pixels, so each pixel is stretched to 32 pixels, to ensure the total 256
-  pixels.
+
+* 2x4 palette, index = 31: the top left corner. Each pixel is stretched to 32 pixels.
 * 2x4 palette, index = 32: the top right corner.
-* 2x4 palette, index = 63: the top right corner.
 * 2x4 palette, index = 64: the pixel below the top left corner.
 
 `ItemStack` color depends on the `palette_index` field of the stack's metadata.
+
 Node color in the map depends on the `Node.param2` value, which in turn is
 interpreted accoring to its `NodeDef.paramtype2`.
 ]=]
 --- @alias PaletteIndex integer
 
 --[=[
-*[-32767,32767]*.
+(Default: `0`) *[-32767,32767]*. Groups always have a rating associated with
+them. If there is no useful meaning for a rating for an enabled group, it shall
+be `1`.
 
-In a number of places, there is a group table. Groups define the properties of a
-thing (item, node, armor of entity, tool capabilities) in such a way that the
-engine and other mods can can interact with the thing without actually knowing
-what the thing is.
+⚠️ **WARNING**: when you read groups, you must interpret `nil` and `0` as the
+same value.
+]=]
+--- @alias GroupRating integer
 
-Groups are stored in a table, having the group names with keys and the group
-ratings as values. Groups always have a rating associated with them. If there is
-no useful meaning for a rating for an enabled group, it shall be `1`. When not
-defined, the rating of a group defaults to `0`. Thus, when you read groups, you
-must interpret `nil` and `0` as the same value.
+--[=[
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
 
-### Groups of entities
-
-For entities, groups are, as of now, used only for calculating damage. The
-rating is the percentage of damage caused by items with this damage group.
-
-👀 **See also**:`Entity:set_armor_gropus()`, `Entity:get_armor_gropus()`.
-`minetest.get_hit_params()` for damage calculation.
-
-### Groups of tool capabilities
-
-Groups in tool capabilities define which groups of nodes and entities they are
-effective towards.
-
-👀 **See also**:`ToolDef.tool_capabilitie.groupcapss`. `minetest.get_hit_params()` fo
- damage and wear calculation. `minetest.get_dig_param()` for digging time an
- wear calculation.
+Groups define the properties of a thing (item, node, armor of entity, tool
+capabilities) in such a way that the engine and other mods can can interact with
+the thing without actually knowing what the thing is.
 
 ### Special item groups
+* `not_in_creative_inventory`: ✅ **Recomendation** for inventory mods to
+  indicate that the item should be hidden in item lists.
+]=]
+--- @alias ItemGroups {[string]: GroupRating}
 
+-- TODO maybe move out node definition
+-- TODO maybe put references
+
+--[=[
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
+
+Groups define the properties of a thing (item, node, armor of entity, tool
+capabilities) in such a way that the engine and other mods can can interact with
+the thing without actually knowing what the thing is.
+
+### Special item groups
 * `not_in_creative_inventory`: ✅ **Recomendation** for inventory mods to
   indicate that the item should be hidden in item lists.
 
@@ -90,7 +83,6 @@ effective towards.
     checked. No effect for other nodes.
   * `3`: the node is always attached to the node below.
   * `4`: the node is always attached to the node above.
-  TODO reference where this is relevant
 
 * `bouncy`: value is bounce speed in percent. \
   If positive, jump/sneak on floor impact will increase/decrease bounce height.
@@ -139,13 +131,41 @@ effective towards.
 * `slippery`: Players and items will slide on the node.
   Slipperiness rises steadily with `slippery` value, starting at 1.
   TODO reference where this is relevant
+]=]
+--- @alias NodeGroups ItemGroups
+
+--[=[
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
+
+Groups define the properties of a thing (item, node, armor of entity, tool
+capabilities) in such a way that the engine and other mods can can interact with
+the thing without actually knowing what the thing is.
+
+### Special item groups
+
+* `not_in_creative_inventory`: ✅ **Recomendation** for inventory mods to
+  indicate that the item should be hidden in item lists.
 
 ### Special tool groups
 
 * `disable_repair`: If set to 1 for a tool, it cannot be repaired using the
   `"toolrepair"` crafting recipe
   TODO reference where this is relevant
+]=]
+--- @alias ToolGroups ItemGroups
 
+--[=[
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
+
+Groups define the properties of a thing (item, node, armor of entity, tool
+capabilities) in such a way that the engine and other mods can can interact with
+the thing without actually knowing what the thing is.
+
+For **Entity groups**, groups are used only for calculating damage. The rating
+is the percentage of damage caused by items with this damage group.
+
+👀 **See also**: `ObjectRef:set_armor_gropus()`, `ObjectRef:get_armor_gropus()`.
+`minetest.get_hit_params()` for damage calculation.
 
 ### Special `ObjectRef` armor groups
 
@@ -165,19 +185,48 @@ effective towards.
   else than take damage.
   TODO reference where this is relevant
 ]=]
---- *[-32767,32767]*.
---- @alias GroupRating integer
+--- @alias ObjectRefArmorGroups {[string]: GroupRating}
 
+--- @class ToolCapabilityGroupsSpec
+--- @field maxlevel integer
+--- @field uses integer
+--- @field times number[]
+
+--[=[
+***Auxiliary definition***: Not documented or used in Minetest Lua API.
+
+Groups define the properties of a thing (item, node, armor of entity, tool
+capabilities) in such a way that the engine and other mods can can interact with
+the thing without actually knowing what the thing is.
+
+For **Tool capability groups**, groups in tool capabilities define which groups
+  of nodes and entities they are effective towards.
+
+👀 **See also**: `ToolDef.tool_capabilitie.groupcapss`. `minetest.get_hit_params()` fo
+damage and wear calculation. `minetest.get_dig_param()` for digging time an
+wear calculation.
+]=]
+--- @alias ToolCapabilityGroups {[string]: ToolCapabilityGroupsSpec}
+
+--- @class ToolCapability
+--- @field groupcaps ToolCapabilityGroups
+
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class GetCraftResultIn
 --- @field method '"normal"' | '"cooking"' | '"fuel"'
 --- @field width integer # *[0,3]*. `0` shapeless recipes.
 --- @field items ItemFormat[] # *Length = [1, 9]*. Input items.
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class GetCraftResultOut
 --- @field item ItemStack # Empty `Itemstack` unsuccessful.
 --- @field time integer # `0` unsuccessful.
 --- @field replacements ItemStack[] # *Length = [1, 9]*. Replacement items that couldn't be placed in leftover item input.
 
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
 --- @class GetCraftRecipeOut
 --- @field method '"normal"' | '"cooking"' | '"fuel"'
 --- @field width integer # *[0,3]*. `0` shapeless recipes.
@@ -186,3 +235,27 @@ effective towards.
 
 -- TODO toolcapability section class
 -- TODO item metadata section class
+
+-- Definition tables -----------------------------------------------------------
+
+-- TODO basic definition table documentation.
+-- TODO better definition table documentation.
+
+--- @class ItemDef
+--- @field description? string # Can contain new lines. "\n" has to be used as new line character. 👀 **See also**: `ItemStack:get_description()`.
+--- @field short_description? string # Cannot contain new lines. 👀 **See also**: `ItemStack:get_short_description()`*
+--- @field groups? ItemGroups
+--- @field inventory_image? string # (Default: 3D render of node) Texture shown in the inventory GUI.
+--- @field inventory_overlay? string # An overlay texture which is not affected by colorization.
+--- @field wield_image? string # (Default: 3D render of node) Texture shown when item is held in hand.
+--- @field wield_overlay? string # An overlay texture which is not affected by colorization.
+--- @field wield_scale? string # Scale for the item when held in hand.
+--- @field palette? string # An image file containing the palette.
+
+--- @class NodeDef:ItemDef
+
+--- @class ToolDef:ItemDef
+
+--- ***Auxiliary definition***: Not documented or used in Minetest Lua API.
+---
+--- @alias ItemlikeDef ItemDef | NodeDef | ToolDef
